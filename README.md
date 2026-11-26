@@ -4,7 +4,7 @@ Disposable / temporary email on Stella's own domain:
 
 - `toolkitgen.xyz`
 
-Note: `toolkithub.site` is NOT used yet — its MX records point to Google Workspace, so enabling Cloudflare Email Routing there would stop Google mail. Only add it after an explicit decision to move that mail.
+Update 2026-11-27: `toolkithub.site` was added at Stella's explicit choice. Its MX records previously pointed to Google Workspace — enabling Cloudflare Email Routing there replaces them, so Google mail for toolkithub.site stops and temp mail takes over.
 
 ## How it works
 
