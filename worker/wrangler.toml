@@ -11,4 +11,4 @@ id = "53a30d2e2a2a4544b39826684efd0d6a"
 [vars]
 # Inbox lifetime in seconds (1 hour)
 MESSAGE_TTL_SECONDS = "3600"
-ALLOWED_DOMAINS = "toolkitgen.xyz,toolkithub.site"
+ALLOWED_DOMAINS = "toolkitgen.xyz,toolkithub.site,fmf.toolkitgen.xyz"
