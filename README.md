@@ -1,9 +1,10 @@
 # Temp Mail
 
-Disposable / temporary email on Stella's own domains:
+Disposable / temporary email on Stella's own domain:
 
 - `toolkitgen.xyz`
-- `toolkithub.site`
+
+Note: `toolkithub.site` is NOT used yet — its MX records point to Google Workspace, so enabling Cloudflare Email Routing there would stop Google mail. Only add it after an explicit decision to move that mail.
 
 ## How it works
 

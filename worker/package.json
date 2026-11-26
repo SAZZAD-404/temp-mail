@@ -1,1 +1,1 @@
-{"dependencies":{"postal-mime":"^2.0.0"},"devDependencies":{"wrangler":"^3.0.0"},"name":"temp-mail-worker","private":true,"scripts":{"deploy":"wrangler deploy","dev":"wrangler dev"},"type":"module","version":"1.0.0"}
+{"devDependencies":{"wrangler":"^3.0.0"},"name":"temp-mail-worker","private":true,"scripts":{"deploy":"wrangler deploy","dev":"wrangler dev"},"type":"module","version":"1.0.0"}
