@@ -39,7 +39,7 @@ function decodeBytes(str) {
   const bytes = new Uint8Array(str.length);
   for (let i = 0; i < str.length; i++) bytes[i] = str.charCodeAt(i) & 0xff;
   try {
-    return new TextDecoder("utf-8", { fatal: false }).decode(bytes);
+    return new TextDecoder("utf-8", { fatal: false, ignoreBOM: false }).decode(bytes);
   } catch {
     return str;
   }
@@ -58,7 +58,7 @@ function decodeQuotedPrintable(str) {
     }
   }
   try {
-    return new TextDecoder("utf-8", { fatal: false }).decode(new Uint8Array(bytes));
+    return new TextDecoder("utf-8", { fatal: false, ignoreBOM: false }).decode(new Uint8Array(bytes));
   } catch {
     return noSoft;
   }
