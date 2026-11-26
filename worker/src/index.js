@@ -144,7 +144,18 @@ export default {
       if (!validAddress(to)) return;
 
       const rawText = await new Response(message.raw).text();
-      const parsed = parseMessage(rawText);
+      // Parse, but NEVER let a parse failure drop the mail:
+      // fall back to the raw body so the inbox always shows something.
+      let parsed = { text: "", html: "", subject: "" };
+      try {
+        parsed = parseMessage(rawText);
+      } catch (parseErr) {
+        console.error("temp-mail parse failed, storing raw", parseErr);
+        parsed = { text: rawText.slice(0, 20000), html: "", subject: "" };
+      }
+      if (!parsed.text && !parsed.html) {
+        parsed.text = rawText.slice(0, 20000);
+      }
 
       const msg = {
         id: crypto.randomUUID(),
@@ -166,6 +177,27 @@ export default {
       });
     } catch (err) {
       console.error("temp-mail email handler failed", err);
+      // Last-resort store: try again with minimal data so mail is not lost.
+      try {
+        const to = (message.to || "").toLowerCase();
+        if (validAddress(to)) {
+          const key = `inbox:${to}`;
+          const existing = await env.TEMP_MAIL.get(key, "json");
+          const list = Array.isArray(existing) ? existing : [];
+          list.unshift({
+            id: crypto.randomUUID(),
+            from: message.from,
+            to,
+            subject: message.headers.get("subject") || "(no subject)",
+            date: new Date().toISOString(),
+            text: "(This message could not be parsed, but it was received.)",
+            html: "",
+          });
+          await env.TEMP_MAIL.put(key, JSON.stringify(list.slice(0, 50)), {
+            expirationTtl: TTL,
+          });
+        }
+      } catch {}
     }
   },
 
