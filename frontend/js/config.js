@@ -2,7 +2,7 @@
 // Example: https://temp-mail-worker.your-account.workers.dev
 window.TEMP_MAIL_CONFIG = {
   API_BASE: "https://temp-mail-worker.maittechcompany.workers.dev",
-  DOMAINS: ["toolkitgen.xyz", "toolkithub.site", "fmf.toolkitgen.xyz"],
+  DOMAINS: ["toolkitgen.xyz", "toolkithub.site", "fmf.toolkitgen.xyz", "facelesshub.site", "toolkithub.info"],
   REFRESH_MS: 10000,
   INBOX_TTL_MINUTES: 60
 };

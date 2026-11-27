@@ -9,7 +9,7 @@
 //    DELETE /api/inbox?address=a@toolkitgen.xyz -> delete that inbox
 
 const TTL = 3600; // seconds
-const ALLOWED = ["toolkitgen.xyz", "toolkithub.site", "fmf.toolkitgen.xyz"];
+const ALLOWED = ["toolkitgen.xyz", "toolkithub.site", "fmf.toolkitgen.xyz", "facelesshub.site", "toolkithub.info"];
 
 function corsHeaders() {
   return {
@@ -211,7 +211,7 @@ export default {
     if (url.pathname === "/api/inbox") {
       const address = (url.searchParams.get("address") || "").toLowerCase();
       if (!validAddress(address)) {
-        return json({ error: "Invalid address. Use @toolkitgen.xyz, @toolkithub.site or @fmf.toolkitgen.xyz." }, 400);
+        return json({ error: "Invalid address. Use @toolkitgen.xyz, @toolkithub.site, @fmf.toolkitgen.xyz, @facelesshub.site or @toolkithub.info." }, 400);
       }
 
       if (request.method === "DELETE") {
